@@ -350,7 +350,7 @@ export default function App() {
     Format in Markdown.`;
 
     try {
-      const apiKey = process.env.GEMINI_API_KEY;
+      const apiKey = import.meta.env.VITE_GEMINI_API_KEY || process.env.GEMINI_API_KEY;
       if (!apiKey) {
         throw new Error('Clinical Analysis Engine Key is missing. If you are in a new tab, please generate the report in the AI Studio preview first, then refresh the new tab to see the results.');
       }
