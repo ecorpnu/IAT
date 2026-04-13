@@ -425,7 +425,8 @@ export default function App() {
 
     } catch (error) {
       console.error("AI Generation Error:", error);
-      setClinicalSummary('### Generation Error\nAn error occurred while communicating with the clinical analysis engine. Please ensure your assessment data is complete and try again.');
+      const errorMessage = error instanceof Error ? error.message : String(error);
+      setClinicalSummary(`### Generation Error\n${errorMessage}\n\nPlease ensure your assessment data is complete and try again. If the error persists, check your API key configuration.`);
       setFundingAssessment('Analysis could not be completed at this time.');
     } finally {
       setIsGenerating(false);
